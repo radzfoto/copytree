@@ -13,7 +13,7 @@ def copy_with_check(source_path: Path, destination_path: Path):
         
         try:
             print("Attempting to copy file: " + str(source_path) + "\nto: " + destination_path)
-            copied_destination = shutil.copy2(source_path, destination_path)
+            copied_destination = shutil.copy2(source_path.as_posix(), destination_path.as_posix())
             if destination_path.resolve() == copied_destination:
                 print(f"Copy successful: {copied_destination}")
             else:
