@@ -28,7 +28,7 @@ def copy_with_check(source_path: Path, destination_path: Path):
         print("Source file does not exist: " + str(source_path))
 
 def main():
-    copy_with_check(source_path, dest_path, filter_expression)
+    copy_with_check(source_path, dest_path)
 
 
 if __name__ == "__main__":
