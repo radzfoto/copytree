@@ -16,7 +16,7 @@ def copy_with_check(source_path: Path, destination_path: Path):
             return
         
         try:
-            print("Attempting to copy file: " + source_path "\nto: " + destination_path)
+            print("Attempting to copy file: " + str(source_path) + "\nto: " + destination_path)
             copied_destination = shutil.copy2(source_path, destination_path)
             if destination_path.resolve() == copied_destination:
                 print(f"Copy successful: {copied_destination}")
