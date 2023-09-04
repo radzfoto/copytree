@@ -4,9 +4,10 @@ import shutil
 def copy_with_check(source_path: Path, destination_path: Path):
     if source_path.is_file():
         try:
-            copied_destination = shutil.copy2(source_path.as_posix(), destination_path.as_posix())
-            if destination_path.resolve() == copied_destination:
-                print(f"Copy successful: {copied_destination}")
+            # copied_destination = shutil.copy2(str(source_path), str(destination_path))
+            source_path.copy_to(destination_path)
+            if destination_path.exists():
+                print(f"Copy successful: {str(destination_path)}")
             else:
                 print("Copy failed or destination not found for: " + str(destination_path))
         except Exception as e:
