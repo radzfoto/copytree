@@ -25,12 +25,12 @@ def copy_with_check(source_path: Path, destination_path: Path):
 
 def main():
 
-    source_path: Path = Path("mnt/md0/media/pictures/a.nef")
-    dest_path: Path = Path("mnt/md0/media/photos_raw/a.nef")
+    source_path: Path = Path("/mnt/md0/media/pictures/a.nef")
+    dest_path: Path = Path("/mnt/md0/media/photos_raw/a.nef")
     copy_with_check(source_path, dest_path)
 
-    source_path: Path = Path("mnt/md0/media/pictures/Fotos Artwork/Artwork/2012-01-21 Around Palo Alto California DSC_2789.nef")
-    dest_path: Path = Path("mnt/md0/media/photos_raw/Fotos Artwork/Artwork/2012-01-21 Around Palo Alto California DSC_2789.nef")
+    source_path: Path = Path("/mnt/md0/media/pictures/Fotos Artwork/Artwork/2012-01-21 Around Palo Alto California DSC_2789.nef")
+    dest_path: Path = Path("/mnt/md0/media/photos_raw/Fotos Artwork/Artwork/2012-01-21 Around Palo Alto California DSC_2789.nef")
     copy_with_check(source_path, dest_path)
 
 
