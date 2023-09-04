@@ -1,10 +1,6 @@
 from pathlib import Path
 import shutil
 
-source_path: Path = Path("mnt/md0/media/pictures/Fotos Artwork/Artwork/2012-01-21 Around Palo Alto California DSC_2789.nef")
-dest_path: Path = Path("mnt/md0/media/photos_raw/Fotos Artwork/Artwork/2012-01-21 Around Palo Alto California DSC_2789.nef")
-filter_expression: str = "*.nef"
-
 def copy_with_check(source_path: Path, destination_path: Path):
     if source_path.is_file():
         print("Source file exists: " + str(source_path))
@@ -28,6 +24,13 @@ def copy_with_check(source_path: Path, destination_path: Path):
         print("Source file does not exist: " + str(source_path))
 
 def main():
+
+    source_path: Path = Path("mnt/md0/media/pictures/a.nef")
+    dest_path: Path = Path("mnt/md0/media/photos_raw/a.nef")
+    copy_with_check(source_path, dest_path)
+
+    source_path: Path = Path("mnt/md0/media/pictures/Fotos Artwork/Artwork/2012-01-21 Around Palo Alto California DSC_2789.nef")
+    dest_path: Path = Path("mnt/md0/media/photos_raw/Fotos Artwork/Artwork/2012-01-21 Around Palo Alto California DSC_2789.nef")
     copy_with_check(source_path, dest_path)
 
 
