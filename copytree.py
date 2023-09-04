@@ -19,6 +19,7 @@ def copy_with_check(source_path: Path, destination_path: Path):
         print("Source file does not exist: " + str(source_path))
 
 
+
 def copy_matching_files(source_root_path: Path, destination_root_path: Path, pattern: str):
     for source_file in source_root_path.rglob(pattern):
         if source_file.is_file():
@@ -27,6 +28,8 @@ def copy_matching_files(source_root_path: Path, destination_root_path: Path, pat
             
             destination_file.parent.mkdir(parents=True, exist_ok=True)
             copy_with_check(Path(source_file), Path(destination_file))
+        else:
+            print("Source file does not exist: " + str(source_file))
 
 def main():
     copy_matching_files(source_path, dest_path, filter_expression)
