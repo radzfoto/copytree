@@ -1,7 +1,7 @@
 from pathlib import Path
 import shutil
 
-debug:bool = True
+debug:bool = False
 
 def copy_with_check(source_path: Path, destination_path: Path):
     if source_path.is_file():
