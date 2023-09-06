@@ -29,10 +29,6 @@ def delete_files_matching_pattern(directory_path: Path, pattern: str):
             print(f"Deleted: {str(file_path)}")
 
 def main():
-    if debug:
-        source_path: Path = Path("/mnt/495a629d-7875-4458-a12c-11eb0fef7b9d/Users/Raul/media/pictures")
-        #dest_path: Path = Path("/mnt/495a629d-7875-4458-a12c-11eb0fef7b9d/Users/Raul/media/photos_raw")
-
     for pattern in pattern_list:
         delete_files_matching_pattern(source_path, pattern)
 
