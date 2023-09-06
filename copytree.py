@@ -3,6 +3,10 @@ import shutil
 
 debug:bool = False
 
+filter_expression: str = "*.nef"
+source_path: Path = Path("/mnt/md0/media/pictures")
+dest_path: Path = Path("/mnt/md0/media/photos_raw")
+
 def copy_with_check(source_path: Path, destination_path: Path):
     if source_path.is_file():
         try:
@@ -31,11 +35,15 @@ def copy_matching_files(source_root_path: Path, destination_root_path: Path, pat
             destination_file: Path = destination_root_path / relative_path
             
             destination_directory: Path = destination_file.parent
-            dir_created = destination_directory.mkdir(parents=True, exist_ok=True)
+            dir_created = 1  # Anything that is not None
+            if not (destination_directory.exists() and destination_directory.is_dir()):
+                dir_created = destination_directory.mkdir(parents=True, exist_ok=True)
             if dir_created is None:
                 print(f"mkdir succeeded for directory: {str(destination_directory)}")
-            if destination_directory.exists():
+            elif destination_directory.exists() and destination_directory.is_dir():
                 print(f"mkdir directory exists: {str(destination_directory)}")
+            elif destination_directory.exists() and not destination_directory.is_dir():
+                print(f"Is not a directory: {str(destination_directory)}")
             else:
                 print(f"mkdir failed to create directory: {str(destination_directory)}")
             copy_with_check(Path(source_file), Path(destination_file))
@@ -50,9 +58,6 @@ def copy_matching_files(source_root_path: Path, destination_root_path: Path, pat
 
 
 def main():
-    filter_expression: str = "*.nef"
-    source_path: Path = Path("/mnt/md0/media/pictures")
-    dest_path: Path = Path("/mnt/md0/media/photos_raw")
     if debug:
         source_path: Path = Path("/mnt/495a629d-7875-4458-a12c-11eb0fef7b9d/Users/Raul/media/pictures")
         dest_path: Path = Path("/mnt/495a629d-7875-4458-a12c-11eb0fef7b9d/Users/Raul/media/photos_raw")
