@@ -3,46 +3,18 @@ import shutil
 
 debug:bool = False
 
-#filter_expression: str = "*.nef"
-#filter_expression: str = "*.NEF"
-#filter_expression: str = "*.psd"
-#filter_expression: str = "*.PSD"
-#filter_expression: str = "*.cr2"
-#filter_expression: str = "*.CR2"
-#filter_expression: str = "*.tif"
-#filter_expression: str = "*.TIF"
-#filter_expression: str = "*.xcf"
-#filter_expression: str = "*.cxf"
-#filter_expression: str = "*.zip"
-#filter_expression: str = "*.ZIP"
-
-
 source_path: Path = Path("/mnt/md0/media/pictures")
 dest_path: Path = Path("/mnt/md0/media/photos_raw")
 
-def copy_with_check(source_path: Path, destination_path: Path):
-    if source_path.is_file():
-        try:
-            # copied_destination = shutil.copy2(str(source_path), str(destination_path))
-            source_path_as_posix: str = source_path.as_posix()
-            destination_path_as_posix: str = destination_path.as_posix()
-            shutil.copy2(source_path_as_posix, destination_path_as_posix)
-            if destination_path.exists():
-                print(f"Copy successful: {str(destination_path)}")
-            else:
-                print("Copy failed or destination not found for: " + str(destination_path))
-        except Exception as e:
-            print(f"Error during copy: {e}")
-    else:
-        print("Source file does not exist: " + str(source_path))
-
-
-
-def copy_matching_files(source_root_path: Path, destination_root_path: Path, pattern: str):
+def compare_trees(source_root_path: Path, destination_root_path: Path, check_dirs_only: bool):
     if debug:
         file_counter = 0
 
-    for source_file in source_root_path.rglob(pattern):
+    for source_file in source_root_path.rglob("*"):
+        if source_file.is_dir():
+            relative_path: Path = source_file.relative_to(source_root_path)
+            destination_file: Path = destination_root_path / relative_path
+            destination_directory: Path = destination_file.parent
         if source_file.is_file():
             relative_path: Path = source_file.relative_to(source_root_path)
             destination_file: Path = destination_root_path / relative_path
